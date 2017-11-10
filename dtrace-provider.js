@@ -13,28 +13,28 @@ DTraceProviderStub.prototype.disable = function() {};
 var builds = ['Release', 'default', 'Debug'];
 var err = null;
 
-for (var i in builds) {
-    try {
-        var binding = require('./build/' + builds[i] + '/DTraceProviderBindings');
-        DTraceProvider = binding.DTraceProvider;
-        break;
-    } catch (e) {
-        if (err === null) {
-            err = e;
-        }
-    }
-}
+// for (var i in builds) {
+//     try {
+//         var binding = require('./build/' + builds[i] + '/DTraceProviderBindings');
+//         DTraceProvider = binding.DTraceProvider;
+//         break;
+//     } catch (e) {
+//         if (err === null) {
+//             err = e;
+//         }
+//     }
+// }
 
 if (!DTraceProvider) {
     /*
      * If the platform looks like it _should_ have DTrace
      * available, log a failure to load the bindings.
      */
-    if (process.platform === 'darwin' ||
-        process.platform === 'sunos' ||
-        process.platform === 'freebsd') {
-        console.error(err);
-    }
+    // if (process.platform === 'darwin' ||
+    //     process.platform === 'sunos' ||
+    //     process.platform === 'freebsd') {
+    //     console.error(err);
+    // }
 
     DTraceProvider = DTraceProviderStub;
 }
